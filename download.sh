@@ -26,7 +26,7 @@ curl -s "https://slack.com/api/emoji.list?token=${legacy_token}" | jq -r '.emoji
   while IFS=$'\t' read -r key value; do
     if [[ ! ${value} =~ ^alias:.*$ ]]
     then
-      echo "Found entry ${key} - ${value}"
+      echo "Downloading ${key} - ${value}"
       filename=$(basename ${value})
       extension="${filename##*.}"
       curl -s ${value} --output "${target_dir}/${key}.${extension}"
