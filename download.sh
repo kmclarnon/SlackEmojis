@@ -28,7 +28,8 @@ curl -s "https://slack.com/api/emoji.list?token=${legacy_token}" | jq -r '.emoji
     then
       echo "Found entry ${key} - ${value}"
       filename=$(basename ${value})
-      curl ${value} --output ${target_dir}/${filename}
+      extension="${filename##*.}"
+      curl -s ${value} --output "${target_dir}/${key}.${extension}"
     fi
   done
 
